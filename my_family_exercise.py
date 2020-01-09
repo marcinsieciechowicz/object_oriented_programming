@@ -32,7 +32,7 @@ class Sieciechowicz_fam_member(object):
         return cls(first, sex)
     @classmethod
     def from_dict(cls, dict):
-        first, sex = dict
+        first, sex = dict['first'], dict['sex']
         return cls(first, sex)
 
 s_szuszwol = 'Marcin male'
@@ -41,8 +41,7 @@ szuszwol = Sieciechowicz_fam_member.from_string(s_szuszwol)
 lst_Szuszwol = ['Macrin', 'male']
 szuszwol = Sieciechowicz_fam_member.from_list(lst_Szuszwol)
 
-dict = {'Marcin', 'male'}
-dict_szuszwol = dict
+dict_szuszwol = {'first': 'Marcin', 'sex': 'male'}
 szuszwol = Sieciechowicz_fam_member.from_dict(dict_szuszwol)
 #TODO: create alternative constructor from_dict for a sample dict {first: "Marcin", sex: 'male'}
 
