@@ -43,12 +43,12 @@ szuszwol = Sieciechowicz_fam_member.from_list(lst_Szuszwol)
 
 dict_szuszwol = {'first': 'Marcin', 'sex': 'male'}
 szuszwol = Sieciechowicz_fam_member.from_dict(dict_szuszwol)
-#TODO: create alternative constructor from_dict for a sample dict {first: "Marcin", sex: 'male'}
 
 # szuszwol = Sieciechowicz_fam_member('Marcin', Sex.MALE)
 # Natalia = Sieciechowicz_fam_member('Natalia', Sex.FEMALE)
 # Małgorzata = Sieciechowicz_fam_member('Małgorzata', 'female')
 # Mikołaj = Sieciechowicz_fam_member('Mikołaj', 'male')
+
 
 # print(szuszwol)
 # print(Natalia)
