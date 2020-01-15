@@ -5,6 +5,18 @@ class Employee:
     num_of_emps = 0
     raise_amount = 1.04
 
+    def __repr__(self):
+        return f"Employee('{self.first}', '{self.last}', '{self.pay}')"
+
+    def __str__(self):
+        return f"{self.fullname()} - {self.email}"
+
+    def __add__(self, other):
+        return self.pay + other.pay
+
+    def __len__(self):
+        return len(self.fullname())
+
     def __init__(self, first, last, pay):
         self.first = first
         self.last = last
@@ -36,29 +48,59 @@ class Employee:
         return True
 
 
-
 class Developer(Employee):
-    pass
+    raise_amount = 1.10
+
+    def __init__(self, first, last, pay, prog_lang):
+        super().__init__(first, last, pay)
+        self.prog_lang = prog_lang
 
 
 
-emp_1 = Developer('Marcin', 'Sieciechowicz', 200_000)
-emp_2 = Developer('Mikołaj', 'Sieciechowicz', 20_000)
+class Manager(Employee):
 
-print(emp_1.pay)
-emp_1.apply_raise()
-print(emp_1.pay)
+    def __init__(self, first, last, pay, employees=None):
+        super().__init__(first, last, pay)
+        if employees is None:
+            self.employees = []
+        else:
+            self.employees = employees
+
+    def add_emp(self, employee):
+        if employee not in self.employees:
+            self.employees.append(employee)
+
+    def del_emp(self, employee):
+        if employee in self.employees:
+            self.employees.remove(employee)
+
+    def print_emps(self):
+        for emp in self.employees:
+            print('-->', emp.fullname())
 
 
-my_date = datetime.date(2016, 7, 11)
+emp_1 = Employee('Marcin', 'Sieciechowicz', 200_000)
+emp_2 = Employee('Mikołaj', 'Sieciechowicz', 20_000)
 
-print(Developer.is_workday(my_date))
+print(len(emp_1))
+# mgr_1 = Manager('Marcin', 'Smith', 9000, [emp_1])
+
+# print(issubclass(Manager, Developer))
+
+# print(emp_1)
+# print(emp_1.prog_lang)
+
+# print(emp_1.__repr__())
+# print(emp_1.__str__())
+# print(emp_1.pay)
+# emp_1.apply_raise()
+# print(emp_1.pay)
 
 emp_str_1 = 'Maciej-Kowalski-7000'
 emp_str_2 = 'Michał-Nowak-1000'
 emp_str_3 = 'Wojciech-Wiśniewski-2000'
 
-new_emp_1 = Developer.from_string(emp_str_1)
-
-print(new_emp_1.first)
-print(new_emp_1.pay)
+# new_emp_1 = Employee.from_string(emp_str_1)
+#
+# print(new_emp_1.first)
+# print(new_emp_1.pay)
