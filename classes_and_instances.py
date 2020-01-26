@@ -21,13 +21,26 @@ class Employee:
         self.first = first
         self.last = last
         self.pay = pay
-        # self.email = first.lower() + '.' + last.lower() + '@wp.pl'
-        self.email = '{}.{}@wp.pl'.format(first.lower(), last.lower())
 
         Employee.num_of_emps += 1
 
+    @property
+    def email(self):
+        return f'{self.first}.{self.last}@wp.pl'
+
+    @property
     def fullname(self):
         return f'{self.first} {self.last}'
+
+    @fullname.setter
+    def fullname(self, name):
+        self.first, self.last = name.split()
+
+    @fullname.deleter
+    def fullname(self, ):
+        print('Delete Name!')
+        self.first = None
+        self.last = None
 
     def apply_raise(self):
         self.pay = int(self.pay * Employee.raise_amount)
@@ -56,7 +69,6 @@ class Developer(Employee):
         self.prog_lang = prog_lang
 
 
-
 class Manager(Employee):
 
     def __init__(self, first, last, pay, employees=None):
@@ -82,7 +94,13 @@ class Manager(Employee):
 emp_1 = Employee('Marcin', 'Sieciechowicz', 200_000)
 emp_2 = Employee('Mikołaj', 'Sieciechowicz', 20_000)
 
-print(len(emp_1))
+emp_1.fullname = 'Szuszwol Schafer'
+
+print(emp_1.email)
+print(emp_1.fullname)
+
+del emp_1.fullname
+# print(len(emp_1))
 # mgr_1 = Manager('Marcin', 'Smith', 9000, [emp_1])
 
 # print(issubclass(Manager, Developer))
